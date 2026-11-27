@@ -178,3 +178,24 @@ input:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
 @media (max-width: 767px) {
   .compression-grid { grid-template-columns: minmax(0, 1fr); }
 }
+
+.face-markers { position: absolute; inset: 0; pointer-events: none; }
+.face-markers span {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border: 1px solid #1a1c1c;
+  transform: translate(-50%, -50%);
+}
+.eye-marker { border-radius: 50%; background: #fff; }
+.mouth-marker { border-radius: 1px; background: #ffcc66; }
+.face-analysis .actions { align-items: center; }
+.face-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
+  gap: 12px;
+  margin: 16px 0 0;
+}
+.face-results div { padding: 12px; background: var(--canvas); border: 1px solid var(--hairline); border-radius: 8px; }
+.face-results dt { font-size: 14px; font-weight: 600; }
+.face-results dd { margin: 6px 0 0; font-variant-numeric: tabular-nums; }

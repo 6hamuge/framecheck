@@ -53,6 +53,7 @@
           <div id="original-media" class="media frame-media">
             <canvas id="original-frame" role="img" aria-label="원본 프레임"></canvas>
             <div id="original-outline" class="region-outline" aria-hidden="true" hidden></div>
+            <div class="face-markers" aria-hidden="true"></div>
           </div>
           <div id="original-detail" class="region-detail" hidden>
             <div class="card-header"><span>선택 영역 확대</span><span id="original-region-size" class="caption"></span></div>
@@ -64,6 +65,7 @@
           <div id="preview-media" class="media frame-media">
             <canvas id="preview-frame" role="img" aria-label="JPEG 변환 프레임"></canvas>
             <div id="preview-outline" class="region-outline" aria-hidden="true" hidden></div>
+            <div class="face-markers" aria-hidden="true"></div>
           </div>
           <div id="preview-detail" class="region-detail" hidden>
             <div class="card-header"><span>선택 영역 확대</span><span id="preview-region-size" class="caption"></span></div>
@@ -71,6 +73,25 @@
           </div>
         </section>
       </div>
+      <section class="frame-card face-analysis" aria-labelledby="face-analysis-title">
+        <h2 id="face-analysis-title">AI 얼굴 분석</h2>
+        <p class="caption">같은 프레임에서 압축 전후 눈·입의 특징점 위치를 비교합니다. 모델이 처음 로드될 때 인터넷 연결이 필요하며, 영상은 브라우저에서 분석합니다.</p>
+        <div class="actions">
+          <button id="analyze-face" class="button-primary" type="button" disabled>얼굴 분석</button>
+          <div id="face-presets" class="actions" role="group" aria-label="얼굴 영역 자동 선택" hidden>
+            <button class="button-secondary" type="button" data-face-region="face">얼굴 전체</button>
+            <button class="button-secondary" type="button" data-face-region="eyes">눈</button>
+            <button class="button-secondary" type="button" data-face-region="mouth">입</button>
+          </div>
+        </div>
+        <p id="face-status" class="message" role="status"></p>
+        <p id="face-error" class="message error" role="alert"></p>
+        <dl id="face-results" class="face-results" hidden>
+          <div><dt>눈 특징점 평균 위치 차이</dt><dd id="eye-offset"></dd></div>
+          <div><dt>입 특징점 평균 위치 차이</dt><dd id="mouth-offset"></dd></div>
+        </dl>
+        <p id="face-metric-note" class="caption" hidden>원본 픽셀 기준 거리와 원본 얼굴 너비 대비 비율입니다. 둥근 점은 눈, 네모 점은 입 특징점입니다. 값은 모델 추정의 차이를 나타냅니다.</p>
+      </section>
       <form id="region-form" class="frame-card" novalidate>
         <h2>비교 영역</h2>
         <p class="caption">원본 프레임에서 드래그하거나 픽셀 좌표를 입력하세요.</p>

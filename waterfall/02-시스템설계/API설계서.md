@@ -18,7 +18,7 @@
 
 | 대상 | 판정 | 근거 |
 | --- | --- | --- |
-| 애플리케이션 HTTP API, 외부 서비스 API | 해당 없음 · 엔드포인트 0개 | 파일 입력, 프레임 비교, PNG 저장은 브라우저에서 완료한다. NFR-001 및 BP-LOCAL-001을 적용한다. |
+| 서버 추론·애플리케이션 HTTP API | 해당 없음 · 엔드포인트 0개 | 파일 입력, 프레임 비교, PNG 저장은 브라우저에서 완료한다. NFR-001 및 BP-LOCAL-001을 적용한다. |
 | 인증, 인가, JSON 공통 규격, API 버전, 호출 제한, OpenAPI | 해당 없음 | 이번 실습의 호출 대상은 브라우저 기능과 정적 호스트다. |
 | 정적 자산 요청 | 적용 | 진입 문서, CSS, JavaScript, 샘플 영상과 정지 프레임을 같은 출처에서 읽는다. 샘플 영상은 호스트와 브라우저가 제공하는 일반 정적 미디어 전송을 사용한다. |
 | 브라우저 인터페이스 | 적용 | 아래 입력·출력 규격을 화면, 영상 처리, 결과 저장에서 공통으로 사용한다. |
@@ -55,3 +55,9 @@
 - 서버에서 미디어나 사용자 데이터를 다루는 기능이 범위에 추가되면 변경 승인 후 데이터 흐름·인증·API 계약을 다시 검토한다.
 
 - [SRS](../01-요구사항분석/요구사항명세서-SRS.md), [시스템 아키텍처 설계서](시스템아키텍처설계서-SAD.md), [데이터베이스 설계서](데이터베이스설계서.md)
+
+## 5. IF-005 · 브라우저 얼굴 분석
+
+`face-analysis.js`의 `analyzeFacePair(original, converted, isCurrent, onReady)`에 현재 원본·JPEG 캔버스를 넘긴다. 반환값은 원본 미검출, 원본 검출 및 대응 미검출, 대응 얼굴과 거리 데이터, 또는 입력 변경으로 폐기된 결과다. 로더 실패는 예외를 반환하고 다음 요청에서 로딩을 재시도할 수 있다.
+
+외부 요청은 jsDelivr의 MediaPipe Tasks Vision 0.10.21 모듈·WASM과 Google 모델 스토리지의 Face Landmarker float16 v1 정적 다운로드다. 입력 프레임·파일명·특징점·결과는 이 자산 요청에 포함하지 않는다. [Google AI Edge · Face Landmarker](https://developers.google.com/edge/mediapipe/solutions/vision/face_landmarker?tab=Web)

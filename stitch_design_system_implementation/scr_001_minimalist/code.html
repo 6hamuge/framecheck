@@ -1,0 +1,283 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "primary": "#000000",
+          "surface": "#FFFFFF",
+          "background": "#FFFFFF",
+          "border-hairline": "#DBDBDB",
+          "border-subtle": "#EFEFEF",
+          "text-muted": "#737373",
+          "on-surface": "#262626",
+          "link-action": "#0095F6",
+          "surface-container-low": "#FAFAFA",
+          "surface-container": "#F5F5F5"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.375rem",
+          "xl": "0.5rem",
+          "full": "9999px"
+        }
+      }
+    }
+  }</script><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style id="global-font-override">html, body, *, button, input, select, textarea, p, span, h1, h2, h3, h4, h5, h6 { font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important; }</style></head><body class="bg-white text-[#262626] min-h-screen antialiased selection:bg-neutral-200"><header class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-[#DBDBDB]"><div class="h-16 max-w-[1080px] mx-auto px-6 flex items-center justify-between"><div class="flex items-center gap-3"><div class="flex items-center gap-2 cursor-pointer"><svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect height="18" rx="3" width="18" x="3" y="3"></rect><path d="M3 9h18M9 21V9"></path></svg><span class="text-[17px] font-semibold tracking-tight text-black">FrameCheck</span></div><div class="hidden sm:flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-[#EFEFEF] bg-[#FAFAFA]"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span><span class="text-[12px] text-[#737373] font-medium">Ready</span></div></div><div class="flex items-center gap-6"><nav class="hidden md:flex items-center gap-1"><a class="text-[13px] font-medium text-[#737373] hover:text-black px-3 py-1.5 rounded-md hover:bg-[#F5F5F5] transition-colors" data-path="inspector" href="#">Inspector</a><a class="text-[13px] font-medium text-[#737373] hover:text-black px-3 py-1.5 rounded-md hover:bg-[#F5F5F5] transition-colors" data-path="batch-analysis" href="#">Batch</a><a class="text-[13px] font-medium text-[#737373] hover:text-black px-3 py-1.5 rounded-md hover:bg-[#F5F5F5] transition-colors" data-path="documentation" href="#">Documentation</a></nav><div class="flex items-center gap-3 pl-2 border-l border-[#EFEFEF]"><button class="w-8 h-8 rounded-full border border-[#DBDBDB] flex items-center justify-center hover:opacity-80 transition-opacity bg-white"><svg class="w-4 h-4 text-[#262626]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></button></div></div></div></header><main class="w-full pt-16 bg-white max-w-[1080px] mx-auto px-6 min-h-[calc(100vh-4rem)]"><div class="flex flex-col w-full pb-16">
+<!-- Hero / Launch Section -->
+<section class="relative w-full pt-10 pb-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+<!-- Left Column: Core Value & Call to Actions -->
+<div class="lg:col-span-7 flex flex-col space-y-4">
+<!-- Subtle System Badge -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#DBDBDB] bg-white text-[#737373] text-[12px] font-medium w-fit">
+<svg class="w-3.5 h-3.5 text-black" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+<span>100% Client-Side Privacy Engine</span>
+</div>
+<h1 class="text-[34px] sm:text-[38px] font-bold text-black tracking-tight leading-[1.2]">
+          압축 전후 프레임 비교
+        </h1>
+<p class="text-[15px] text-[#737373] leading-relaxed max-w-xl">
+          해상도와 JPEG 품질을 바꿔 영상의 디테일을 실시간으로 확인하세요. 모든 분석은 서버 전송 없이 브라우저 로컬 하드웨어 가속으로 안전하게 처리됩니다.
+        </p>
+<!-- CTA Buttons Cluster -->
+<div class="flex flex-wrap items-center gap-3 pt-2">
+<!-- Hidden File Input for Native Trigger -->
+<input accept="video/mp4,video/webm" class="hidden" id="video-file-input" type="file">
+<button class="inline-flex items-center justify-center gap-2 min-h-[42px] px-5 bg-black hover:bg-neutral-800 text-white text-[13px] font-semibold rounded-lg transition-all active:scale-[0.98]" onclick="document.getElementById('video-file-input').click()" type="button">
+<svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" x2="12" y1="3" y2="15"></line></svg>
+<span>내 영상 열기</span>
+</button>
+<button class="inline-flex items-center justify-center gap-2 min-h-[42px] px-5 bg-white hover:bg-[#FAFAFA] border border-[#DBDBDB] text-black text-[13px] font-semibold rounded-lg transition-all active:scale-[0.98]" id="load-sample-btn" type="button">
+<svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+<span>샘플로 시작</span>
+</button>
+</div>
+<!-- Technical Constraints Info Note -->
+<div class="flex items-center gap-1.5 text-[#8E8E8E] text-[12px] pt-1">
+<svg class="w-3.5 h-3.5 text-[#8E8E8E] shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+<span>MP4 · WebM / 최대 30초 · 50MB · 외부 서버 업로드 없음 (100% 로컬)</span>
+</div>
+</div>
+<!-- Right Column: High-fidelity Reference Poster Preview -->
+<div class="lg:col-span-5 relative">
+<div class="relative w-full rounded-xl bg-black border border-[#DBDBDB] overflow-hidden group shadow-sm">
+<!-- Sample Frame Image with data-alt -->
+<div class="relative aspect-video w-full overflow-hidden bg-neutral-900">
+<img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" data-alt="An ultra high-definition 4K macro cinematic frame of an artisan master woodcarver delicately carving fine walnut wood shavings in a dimly lit studio workshop with sharp directional warm rim lighting, showing microscopic wood grain pores, chiseled textures, and deep tactile shadow contrast in deep teal and warm cream tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAePqRba_E1X6aqc0DmsDR4TPHUci5ggcz9zmoltOh67fzRaws4zr7IV5cMBDQUZBmSJjloXUt5j_lFbkFauJsVAjzsYXtq2XFQJvdjVZ8HVdVEkW1oNXH8u7jgjgk0arjJCsmEuIOsWI3rwq6QCqaCtIKVtbZAaFFzAke2qfgajFXgcSuO4XtkqND9FaSVJCeaN8RFRTxAdMZEDjKXnF73cWJUuAD5eIEPzSHqrBE3">
+<!-- Minimal Subtle Vignette -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none"></div>
+</div>
+<!-- Official Sample Badge Overlay -->
+<div class="absolute top-3 right-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md text-black text-[11px] font-semibold border border-black/10">
+<span class="w-1.5 h-1.5 rounded-full bg-black"></span>
+              학회 시연용 고화질 공식 샘플
+            </span>
+</div>
+<!-- Bottom Frame Metadata Strip -->
+<div class="absolute bottom-0 inset-x-0 p-3.5 flex items-end justify-between text-white">
+<div class="flex flex-col">
+<span class="text-[13px] font-semibold tracking-tight text-white">Master_4K_Artisan_Carver.mp4</span>
+<span class="text-[11px] text-white/75">3840 × 2160 · 29.97 fps · ProRes Baseline</span>
+</div>
+<div class="flex items-center gap-1.5 bg-black/60 border border-white/20 px-2 py-1 rounded-md backdrop-blur-sm">
+<svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2v14a2 2 0 0 0 2 2h14"></path><path d="M18 22V8a2 2 0 0 0-2-2H2"></path></svg>
+<span class="text-[11px] font-medium text-white">ROI 지정 가능</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Drag-and-Drop Dropzone -->
+<section class="w-full mt-2">
+<div class="relative w-full rounded-xl bg-white border border-[#DBDBDB] hover:border-black p-10 transition-all duration-200 cursor-pointer flex flex-col items-center justify-center text-center group" id="main-dropzone" onclick="document.getElementById('video-file-input').click()">
+<!-- Ambient Minimal Icon -->
+<div class="w-14 h-14 rounded-full border border-[#DBDBDB] group-hover:border-black flex items-center justify-center text-black transition-all duration-200 mb-4 bg-white group-hover:bg-[#FAFAFA]">
+<svg class="w-6 h-6 transition-transform group-hover:-translate-y-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+<polyline points="17 8 12 3 7 8"></polyline>
+<line x1="12" x2="12" y1="3" y2="15"></line>
+</svg>
+</div>
+<h3 class="text-[17px] font-semibold text-black mb-1.5">
+        영상을 여기에 끌어다 놓거나 클릭하여 선택하세요
+      </h3>
+<p class="text-[13px] text-[#737373] max-w-md mb-5 leading-normal">
+        타임라인 동기화 뷰포트에서 즉각적인 디테일 비교를 시작할 수 있습니다.
+      </p>
+<div class="flex items-center gap-4 text-[#8E8E8E] text-[12px]">
+<span class="inline-flex items-center gap-1.5">
+<svg class="w-3.5 h-3.5 text-[#262626]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          H.264 / VP9 / AV1 가속
+        </span>
+<span class="w-1 h-1 rounded-full bg-[#DBDBDB]"></span>
+<span class="inline-flex items-center gap-1.5">
+<svg class="w-3.5 h-3.5 text-[#262626]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          데이터 누출 없는 클라이언트 샌드박스
+        </span>
+</div>
+</div>
+</section>
+<!-- Workspace Step-by-Step Onboarding Guide -->
+<section class="w-full mt-12">
+<div class="flex flex-col mb-4">
+<div class="flex items-center justify-between pb-3 border-b border-[#EFEFEF]">
+<h2 class="text-[17px] font-bold text-black tracking-tight">워크스페이스 검사 절차</h2>
+<span class="text-[12px] font-medium text-[#8E8E8E]">초정밀 픽셀 평가 파이프라인</span>
+</div>
+</div>
+<!-- 3-Column Structured Flow -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Step 1 Card -->
+<div class="flex flex-col bg-white border border-[#DBDBDB] rounded-xl p-5 hover:border-black/40 transition-colors">
+<div class="flex items-center justify-between mb-4">
+<span class="w-7 h-7 rounded-full border border-[#DBDBDB] text-black flex items-center justify-center text-[12px] font-bold">01</span>
+<svg class="w-5 h-5 text-[#262626]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24">
+<rect height="20" rx="2.18" ry="2.18" width="20" x="2" y="2"></rect>
+<line x1="7" x2="7" y1="2" y2="22"></line>
+<line x1="17" x2="17" y1="2" y2="22"></line>
+<line x1="2" x2="22" y1="12" y2="12"></line>
+<line x1="2" x2="7" y1="7" y2="7"></line>
+<line x1="2" x2="7" y1="17" y2="17"></line>
+<line x1="17" x2="22" y1="17" y2="17"></line>
+<line x1="17" x2="22" y1="7" y2="7"></line>
+</svg>
+</div>
+<h3 class="text-[14px] font-semibold text-black mb-1.5">영상 로드 또는 샘플 선택</h3>
+<p class="text-[13px] text-[#737373] leading-relaxed mb-6">
+          로컬 저장소의 원본 MP4나 WebM 비디오를 로드하거나, 표준 4K 캘리브레이션 샘플을 즉시 불러옵니다.
+        </p>
+<div class="mt-auto pt-2.5 pb-2.5 px-3 bg-[#FAFAFA] border border-[#EFEFEF] rounded-lg flex items-center gap-2">
+<svg class="w-4 h-4 text-black shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><rect height="16" rx="2" width="16" x="4" y="4"></rect><rect height="6" width="6" x="9" y="9"></rect><line x1="9" x2="9" y1="1" y2="4"></line><line x1="15" x2="15" y1="1" y2="4"></line><line x1="9" x2="9" y1="20" y2="23"></line><line x1="15" x2="15" y1="20" y2="23"></line><line x1="20" x2="23" y1="9" y2="9"></line><line x1="20" x2="23" y1="14" y2="14"></line><line x1="1" x2="4" y1="9" y2="9"></line><line x1="1" x2="4" y1="14" y2="14"></line></svg>
+<span class="text-[11px] text-[#262626] font-medium">HTML5 Video Element 직접 디코딩</span>
+</div>
+</div>
+<!-- Step 2 Card -->
+<div class="flex flex-col bg-white border border-[#DBDBDB] rounded-xl p-5 hover:border-black/40 transition-colors">
+<div class="flex items-center justify-between mb-4">
+<span class="w-7 h-7 rounded-full border border-[#DBDBDB] text-black flex items-center justify-center text-[12px] font-bold">02</span>
+<svg class="w-5 h-5 text-[#262626]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M6 2v14a2 2 0 0 0 2 2h14"></path>
+<path d="M18 22V8a2 2 0 0 0-2-2H2"></path>
+</svg>
+</div>
+<h3 class="text-[14px] font-semibold text-black mb-1.5">ROI(관심 영역) 지정</h3>
+<p class="text-[13px] text-[#737373] leading-relaxed mb-6">
+          타임라인 스크러버로 비교할 특정 프레임을 멈춘 뒤, 마우스 드래그로 고주파 텍스처 영역을 박스로 지정합니다.
+        </p>
+<div class="mt-auto pt-2.5 pb-2.5 px-3 bg-[#FAFAFA] border border-[#EFEFEF] rounded-lg flex items-center gap-2">
+<span class="w-3.5 h-3.5 rounded border border-black bg-white flex items-center justify-center">
+<span class="w-1.5 h-1.5 bg-black rounded-sm"></span>
+</span>
+<span class="text-[11px] text-[#262626] font-medium">1:1 픽셀 크롭 뷰포트 자동 연동</span>
+</div>
+</div>
+<!-- Step 3 Card -->
+<div class="flex flex-col bg-white border border-[#DBDBDB] rounded-xl p-5 hover:border-black/40 transition-colors">
+<div class="flex items-center justify-between mb-4">
+<span class="w-7 h-7 rounded-full border border-[#DBDBDB] text-black flex items-center justify-center text-[12px] font-bold">03</span>
+<svg class="w-5 h-5 text-[#262626]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+<polyline points="7 10 12 15 17 10"></polyline>
+<line x1="12" x2="12" y1="15" y2="3"></line>
+</svg>
+</div>
+<h3 class="text-[14px] font-semibold text-black mb-1.5">실시간 비교 및 PNG 내보내기</h3>
+<p class="text-[13px] text-[#737373] leading-relaxed mb-6">
+          해상도 축소 비율과 JPEG 압축률을 슬라이더로 조절하여 디테일 손실을 관찰하고, 검증 스냅샷을 출력합니다.
+        </p>
+<div class="mt-auto pt-2.5 pb-2.5 px-3 bg-[#FAFAFA] border border-[#EFEFEF] rounded-lg flex items-center gap-2">
+<svg class="w-4 h-4 text-black shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+<span class="text-[11px] text-[#262626] font-medium">무손실 비교 리포트 이미지 생성</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Integrity / Security Ribbon -->
+<section class="w-full mt-6">
+<div class="bg-white border border-[#DBDBDB] rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-3.5">
+<div class="w-9 h-9 rounded-full border border-[#DBDBDB] flex items-center justify-center text-black shrink-0 bg-[#FAFAFA]">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+</div>
+<div>
+<h4 class="text-[13px] font-semibold text-black">완벽한 오프라인 작동 원칙</h4>
+<p class="text-[12px] text-[#737373]">브라우저의 WebGL &amp; Canvas 파이프라인에서만 프레임을 연산하므로 기밀 포스트 프로덕션 미디어도 안전합니다.</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5 shrink-0 text-[12px] text-black font-semibold px-3 py-1 bg-[#FAFAFA] border border-[#EFEFEF] rounded-md">
+<svg class="w-3.5 h-3.5 text-black" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+<span>Zero Cloud Upload</span>
+</div>
+</div>
+</section>
+</div>
+<script>
+  (function initStartScreen() {
+    const dropzone = document.getElementById('main-dropzone');
+    const fileInput = document.getElementById('video-file-input');
+    const sampleBtn = document.getElementById('load-sample-btn');
+
+    if (dropzone && fileInput) {
+      // Drag & Drop visual feedback
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropzone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropzone.classList.add('border-black', 'bg-[#FAFAFA]');
+        });
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        dropzone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropzone.classList.remove('border-black', 'bg-[#FAFAFA]');
+        });
+      });
+
+      // Handle drop
+      dropzone.addEventListener('drop', (e) => {
+        const files = e.dataTransfer?.files;
+        if (files && files.length > 0) {
+          handleSelectedFile(files[0]);
+        }
+      });
+
+      // Handle file input select
+      fileInput.addEventListener('change', (e) => {
+        const target = e.target;
+        if (target && target.files && target.files.length > 0) {
+          handleSelectedFile(target.files[0]);
+        }
+      });
+    }
+
+    if (sampleBtn) {
+      sampleBtn.addEventListener('click', () => {
+        // Trigger sample loading state simulation
+        sampleBtn.innerHTML = '<svg class="w-4 h-4 animate-spin text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg><span>샘플 로딩 중...</span>';
+        setTimeout(() => {
+          sampleBtn.innerHTML = '<svg class="w-4 h-4 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg><span>샘플로 시작</span>';
+        }, 800);
+      });
+    }
+
+    function handleSelectedFile(file) {
+      const allowedTypes = ['video/mp4', 'video/webm'];
+      if (!allowedTypes.includes(file.type)) {
+        alert('MP4 또는 WebM 파일을 선택하세요.');
+        return;
+      }
+      if (file.size > 50 * 1024 * 1024) {
+        alert('50MB 이하의 영상을 선택하세요.');
+        return;
+      }
+      // Ready for workspace navigation with selected video
+    }
+  })();
+</script></main><footer class="w-full bg-white border-t border-[#DBDBDB] py-8 mt-12"><div class="max-w-[1080px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4"><div class="text-[12px] text-[#8E8E8E]">FrameCheck Post-Production Analysis • Utilitarian Precision Engine</div><div class="text-[12px] text-[#8E8E8E]">© 2024 FrameCheck. High-fidelity frame inspection.</div></div></footer>
+
+
+</body></html>

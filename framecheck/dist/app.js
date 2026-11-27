@@ -41,10 +41,19 @@ const originalMedia = document.querySelector("#original-media");
 const panels = ["original", "preview"].map((id) => ({
   media: document.querySelector(`#${id}-media`),
   outline: document.querySelector(`#${id}-outline`),
+  markers: document.querySelector(`#${id}-media .face-markers`),
   detail: document.querySelector(`#${id}-detail`),
   crop: document.querySelector(`#${id}-crop`),
   size: document.querySelector(`#${id}-region-size`),
 }));
+
+const analyzeButton = document.querySelector("#analyze-face");
+const facePresets = document.querySelector("#face-presets");
+const faceStatus = document.querySelector("#face-status");
+const faceError = document.querySelector("#face-error");
+const faceResults = document.querySelector("#face-results");
+const faceMetricNote = document.querySelector("#face-metric-note");
+const faceMetrics = ["eye", "mouth"].map((region) => document.querySelector(`#${region}-offset`));
 
 const messages = {
   format: "MP4 또는 WebM 파일을 선택하세요.",
@@ -62,6 +71,8 @@ let readyRevision = -1;
 let encoding = false;
 let previewRequested = false;
 let exporting = false;
+let faceResult = null;
+let analysisJob = null;
 
 function validateFile(file) {
   const type = file.type.toLowerCase();
@@ -81,12 +92,12 @@ function mediaTime(seconds) {
 
 function releaseSource() {
   if (!activeSource) return;
-  const { video, url, controller, objectUrl } = activeSource;
+  const { video, url, controller } = activeSource;
   activeSource = null;
   controller.abort();
   video.removeAttribute("src");
   video.load();
-  if (objectUrl) URL.revokeObjectURL(url);
+  if (url) URL.revokeObjectURL(url);
 }
 
 function resetFrame() {
@@ -143,6 +154,22 @@ function readFirstFrame(source) {
   });
 }
 
+async function loadSample(url, sourceSignal) {
+  // Use a local Blob so sample seeking also works on static servers without range requests.
+  const controller = new AbortController();
+  const abort = () => controller.abort();
+  sourceSignal.addEventListener("abort", abort, { once: true });
+  const timeout = window.setTimeout(abort, readTimeout);
+  try {
+    const response = await fetch(url, { signal: controller.signal });
+    if (!response.ok) throw new Error(messages.decode);
+    return await response.blob();
+  } finally {
+    window.clearTimeout(timeout);
+    sourceSignal.removeEventListener("abort", abort);
+  }
+}
+
 function openVideo(file) {
   const invalid = validateFile(file);
   if (invalid) {
@@ -150,10 +177,10 @@ function openVideo(file) {
     return;
   }
 
-  openSource(file.name, URL.createObjectURL(file), true);
+  openSource(file.name, file);
 }
 
-async function openSource(name, url, objectUrl = false) {
+async function openSource(name, input) {
   releaseSource();
   resetFrame();
   errorMessage.textContent = "";
@@ -165,8 +192,7 @@ async function openSource(name, url, objectUrl = false) {
   video.playsInline = true;
   const source = {
     video,
-    url,
-    objectUrl,
+    url: null,
     controller: new AbortController(),
     requestedTime: null,
     seeking: false,
@@ -174,6 +200,9 @@ async function openSource(name, url, objectUrl = false) {
   activeSource = source;
 
   try {
+    const blob = typeof input === "string" ? await loadSample(input, source.controller.signal) : input;
+    if (activeSource !== source) return;
+    source.url = URL.createObjectURL(blob);
     await readFirstFrame(source);
     if (activeSource !== source) return;
     drawFrame(video);
@@ -245,7 +274,9 @@ function seekVideo(source, time) {
     }
 
     function checkFrame() {
-      if (!video.seeking && video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) finish(true);
+      if (!video.seeking && video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+        finish(Math.abs(video.currentTime - time) <= 0.05);
+      }
     }
 
     video.addEventListener("seeked", checkFrame, options);
@@ -401,7 +432,10 @@ originalMedia.addEventListener("lostpointercapture", (event) => {
   drag = null;
   drawOutlines(region);
 });
-const resizeObserver = new ResizeObserver(() => drawOutlines(region));
+const resizeObserver = new ResizeObserver(() => {
+  drawOutlines(region);
+  positionFaceMarkers();
+});
 for (const panel of panels) resizeObserver.observe(panel.media);
 
 function previewReady() {
@@ -421,6 +455,7 @@ function updateSaveButton() {
 
 function invalidatePreview() {
   previewRevision += 1;
+  clearFaceAnalysis();
   preview.hidden = true;
   previewSize.textContent = "";
   previewError.textContent = "";
@@ -476,6 +511,7 @@ async function requestPreview() {
       previewSize.textContent = `${preview.width} × ${preview.height} px`;
       previewStatus.textContent = "미리보기가 준비되었습니다.";
       renderRegions();
+      updateAnalyzeButton();
     } catch {
       if (revision !== previewRevision) continue;
       previewStatus.textContent = "";
@@ -586,3 +622,97 @@ jpegQuality.addEventListener("input", () => {
 });
 retryPreview.addEventListener("click", requestPreview);
 saveButton.addEventListener("click", savePng);
+
+function updateAnalyzeButton() {
+  analyzeButton.disabled = !previewReady() || analysisJob !== null;
+}
+
+function clearFaceAnalysis() {
+  faceResult = null;
+  analysisJob = null;
+  faceStatus.textContent = "";
+  faceError.textContent = "";
+  facePresets.hidden = faceResults.hidden = faceMetricNote.hidden = true;
+  for (const panel of panels) panel.markers.replaceChildren();
+  updateAnalyzeButton();
+}
+
+function positionFaceMarkers() {
+  if (!faceResult?.original) return;
+  for (const [index, points] of [faceResult.original, faceResult.converted].entries()) {
+    if (!points) continue;
+    const panel = panels[index];
+    const source = index === 0 ? frame : preview;
+    const bounds = mediaBounds(panel.media, source);
+    points.forEach(({ x, y }, i) => {
+      const dot = panel.markers.children[i];
+      dot.style.left = `${bounds.x + x * source.width * bounds.scale}px`;
+      dot.style.top = `${bounds.y + y * source.height * bounds.scale}px`;
+    });
+  }
+}
+
+function showFaceResult(result) {
+  faceResult = result;
+  if (!result.original) {
+    faceStatus.textContent = "원본에서 얼굴을 찾지 못했습니다. 다른 프레임을 선택해 보세요.";
+    return;
+  }
+
+  facePresets.hidden = false;
+  for (const [index, points] of [result.original, result.converted].entries()) {
+    if (!points) continue;
+    panels[index].markers.replaceChildren(...points.map((_, i) => {
+      const dot = document.createElement("span");
+      dot.className = i < 4 ? "eye-marker" : "mouth-marker";
+      return dot;
+    }));
+  }
+  positionFaceMarkers();
+
+  if (!result.offsets) {
+    faceStatus.textContent = "변환본에서 원본과 대응하는 얼굴을 찾지 못했습니다.";
+    return;
+  }
+
+  result.offsets.forEach(({ pixels, percent }, index) => {
+    faceMetrics[index].textContent = `${pixels.toFixed(1)} px · 얼굴 너비의 ${percent.toFixed(1)}%`;
+  });
+  faceResults.hidden = faceMetricNote.hidden = false;
+  faceStatus.textContent = "얼굴 분석을 완료했습니다.";
+}
+
+analyzeButton.addEventListener("click", async () => {
+  if (analyzeButton.disabled) return;
+  clearFaceAnalysis();
+  const job = {};
+  analysisJob = job;
+  updateAnalyzeButton();
+  const isCurrent = () => previewReady() && analysisJob === job;
+  faceStatus.textContent = "얼굴 분석 모델을 준비하는 중…";
+
+  try {
+    const { analyzeFacePair } = await import("./face-analysis.js");
+    const result = await analyzeFacePair(frame, preview, isCurrent, () => {
+      faceStatus.textContent = "얼굴 특징점을 분석하는 중…";
+    });
+    if (result && isCurrent()) showFaceResult(result);
+  } catch (error) {
+    if (isCurrent()) {
+      faceStatus.textContent = "";
+      faceError.textContent = error.name === "TimeoutError"
+        ? "얼굴 분석 모델의 응답이 늦어지고 있습니다. 다시 시도해 주세요."
+        : "얼굴 분석을 실행하지 못했습니다. 네트워크 연결을 확인하거나 다시 시도해 주세요.";
+    }
+  } finally {
+    if (analysisJob === job) {
+      analysisJob = null;
+      updateAnalyzeButton();
+    }
+  }
+});
+
+facePresets.addEventListener("click", (event) => {
+  const preset = event.target.closest("[data-face-region]")?.dataset.faceRegion;
+  if (faceResult?.regions && preset) applyRegion(faceResult.regions[preset]);
+});

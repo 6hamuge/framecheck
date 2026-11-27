@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><title>FrameCheck - Status &amp; Console</title><style>
+    body, input, button, textarea, select, .font-body, .font-button, .font-caption, .font-card-title, .font-section, .font-hero-display {
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+      -webkit-font-smoothing: antialiased;
+    }
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#000000",
+          "surface": "#FFFFFF",
+          "background": "#FAFAFA",
+          "border-hairline": "#DBDBDB",
+          "border-subtle": "#EFEFEF",
+          "text-muted": "#737373",
+          "text-secondary": "#8E8E8E",
+          "on-background": "#1A1A1A",
+          "link-action": "#0095F6",
+          "surface-low": "#F4F4F4",
+          "alert-red": "#ED4956"
+        },
+        borderRadius: {
+          "DEFAULT": "4px",
+          "sm": "3px",
+          "md": "6px",
+          "lg": "8px"
+        }
+      }
+    }
+  }
+</script></head><body class="bg-background text-on-background min-h-screen text-[14px] leading-normal antialiased"><header class="sticky top-0 w-full z-50 bg-surface border-b border-border-subtle"><div class="h-[60px] max-w-[1040px] mx-auto px-4 sm:px-6 flex items-center justify-between"><div class="flex items-center gap-4"><div class="flex items-center gap-2 cursor-pointer"><svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect height="18" rx="3" width="18" x="3" y="3"></rect><path d="M3 9h18M9 21V9"></path></svg><span class="text-[17px] font-semibold tracking-tight text-black">FrameCheck</span></div><div class="hidden sm:flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-low border border-border-subtle text-[12px] text-text-muted font-medium"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+        Ready
+      </div></div><div class="flex items-center gap-6"><nav class="hidden md:flex items-center gap-6 text-[14px] font-medium"><a class="text-text-muted hover:text-primary transition-colors" href="#">Inspector</a><a class="text-text-muted hover:text-primary transition-colors" href="#">Batch</a><a class="text-text-muted hover:text-primary transition-colors" href="#">Documentation</a></nav><div class="flex items-center gap-3"><button class="w-8 h-8 rounded-full border border-border-hairline bg-surface flex items-center justify-center hover:opacity-80 transition" type="button"><svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></button></div></div></div></header><main class="w-full max-w-[1040px] mx-auto px-4 sm:px-6 pt-6 pb-16"><div class="flex flex-col w-full gap-5">
+<!-- System Status Overview Bar -->
+<div class="w-full bg-surface border border-border-hairline rounded-md p-4 flex flex-wrap items-center justify-between gap-4"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded border border-border-subtle bg-surface-low flex items-center justify-center text-primary shrink-0"><svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div><div><div class="text-[14px] font-semibold text-primary">상태 및 예외 복구 콘솔 (SCR-001 / SCR-002)</div><div class="text-[12px] text-text-muted">MOD-001 클라이언트 영상 파서 및 MOD-002 크롭 검증 엔진의 통합 오류 처리 뷰</div></div></div><!-- Real-time processing indicators --><div class="flex items-center flex-wrap gap-2"><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface border border-border-subtle text-text-muted text-[12px]"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+        프레임을 불러오는 중…
+      </span><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface border border-border-subtle text-text-muted text-[12px]"><span class="w-1.5 h-1.5 rounded-full bg-text-muted animate-pulse"></span>
+        미리보기를 갱신하는 중…
+      </span><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface border border-border-subtle text-text-muted text-[12px]"><span class="w-1.5 h-1.5 rounded-full bg-border-hairline animate-ping"></span>
+        PNG를 만드는 중…
+      </span></div></div>
+<!-- Primary Active Error Notification: Minimalist Instagram Style Card -->
+<div class="w-full bg-surface border border-border-hairline rounded-md p-5 flex flex-col md:flex-row md:items-center justify-between gap-4"><div class="flex items-start gap-3.5"><div class="w-9 h-9 rounded bg-surface-low border border-border-subtle text-alert-red flex items-center justify-center shrink-0 mt-0.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><line x1="1" x2="23" y1="1" y2="23"></line><path d="M21 21H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3m3-3h6l2 3h4a2 2 0 0 1 2 2v9.34m-7.72-2.06a4 4 0 1 1-5.56-5.56"></path></svg></div><div class="space-y-1"><div class="flex items-center gap-2"><span class="text-[11px] font-semibold tracking-wider text-alert-red uppercase">ERR_SIZE_OVERFLOW</span><span class="text-[11px] text-text-muted bg-surface-low px-1.5 py-0.5 rounded border border-border-subtle font-medium">MOD-001 Validation</span></div><div class="text-[15px] font-semibold text-primary">
+          용량 초과: 50MB 이하의 영상을 선택하세요.
+        </div><p class="text-[13px] text-text-muted">
+          업로드된 파일 <span class="font-medium text-primary">A002_C014_RAW_SAMPLE.mov</span>의 크기는 <span class="text-alert-red font-medium">78.4MB</span>로 시스템 권장 한도를 초과했습니다.
+        </p></div></div><div class="flex items-center gap-2 self-end md:self-center shrink-0"><button class="text-[13px] font-semibold text-primary bg-surface border border-border-hairline hover:bg-surface-low px-3.5 py-1.5 rounded transition cursor-pointer flex items-center gap-1.5" type="button"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        샘플로 다시 시도
+      </button><button class="text-[13px] font-semibold text-white bg-primary hover:bg-neutral-800 px-3.5 py-1.5 rounded transition cursor-pointer flex items-center gap-1.5" type="button"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" x2="12" y1="3" y2="15"></line></svg>
+        다른 파일 선택
+      </button></div></div>
+<!-- Main Grid: Workspace & Simulation -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-5"><!-- Left Column: Interactive Region Numeric Validation (MOD-002) --><div class="lg:col-span-7 flex flex-col gap-5"><div class="bg-surface border border-border-hairline rounded-md p-5 flex flex-col"><div class="flex items-center justify-between pb-3 border-b border-border-subtle mb-4"><div class="flex items-center gap-2"><svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path></svg><h2 class="text-[15px] font-semibold text-primary">영역 수치 정밀 입력 (MOD-002)</h2></div><span class="text-[12px] text-text-muted">기준 프레임: <span class="font-medium text-primary">1920 × 1080 px</span></span></div><p class="text-[13px] text-text-muted mb-4 leading-relaxed">
+          마우스 드래그 외에 직접 픽셀 좌표(x, y, w, h)를 입력해 검사 영역을 설정합니다. 바운딩 박스는 프레임 경계 내에서 유효성 규칙(면적 1px 이상, 프레임 이탈 금지)을 실시간 검증합니다.
+        </p><!-- Coordinate Input Grid --><form class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-4" id="regionForm" onsubmit="event.preventDefault(); applyRegion();"><div class="border border-border-hairline rounded p-2.5 bg-surface"><label class="block text-[11px] font-medium text-text-muted mb-1" for="inputX">가로 위치 (X)</label><div class="flex items-center"><input class="w-full bg-transparent text-primary text-[14px] font-semibold focus:outline-none focus:ring-0 p-0 border-0" id="inputX" max="1920" min="0" oninput="validateRegion()" type="number" value="920"><span class="text-[12px] text-text-secondary ml-1">px</span></div></div><div class="border border-border-hairline rounded p-2.5 bg-surface"><label class="block text-[11px] font-medium text-text-muted mb-1" for="inputY">세로 위치 (Y)</label><div class="flex items-center"><input class="w-full bg-transparent text-primary text-[14px] font-semibold focus:outline-none focus:ring-0 p-0 border-0" id="inputY" max="1080" min="0" oninput="validateRegion()" type="number" value="480"><span class="text-[12px] text-text-secondary ml-1">px</span></div></div><div class="border border-border-hairline rounded p-2.5 bg-surface"><label class="block text-[11px] font-medium text-text-muted mb-1" for="inputW">너비 (W)</label><div class="flex items-center"><input class="w-full bg-transparent text-primary text-[14px] font-semibold focus:outline-none focus:ring-0 p-0 border-0" id="inputW" max="1920" min="1" oninput="validateRegion()" type="number" value="480"><span class="text-[12px] text-text-secondary ml-1">px</span></div></div><div class="border border-border-hairline rounded p-2.5 bg-surface"><label class="block text-[11px] font-medium text-text-muted mb-1" for="inputH">높이 (H)</label><div class="flex items-center"><input class="w-full bg-transparent text-primary text-[14px] font-semibold focus:outline-none focus:ring-0 p-0 border-0" id="inputH" max="1080" min="1" oninput="validateRegion()" type="number" value="480"><span class="text-[12px] text-text-secondary ml-1">px</span></div></div></form><!-- Validation Indicator & Action Bar --><div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 bg-surface-low border border-border-subtle rounded mb-5"><div class="flex items-center gap-2 text-[12px] text-primary" id="validationFeedback"><svg id="validationIcon" class="w-4 h-4 text-emerald-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span class="font-medium text-on-background" id="validationText">경계 내 유효한 사각형입니다 (X+W: 1400px ≤ 1920, Y+H: 960px ≤ 1080)</span></div><div class="flex items-center gap-2 self-end sm:self-auto"><button class="text-[12px] font-medium text-text-muted hover:text-alert-red px-2 py-1 transition" onclick="setOutOfBounds()" type="button">
+              경계 초과
+            </button><button class="text-[12px] font-medium text-text-muted hover:text-alert-red px-2 py-1 transition" onclick="setZeroArea()" type="button">
+              면적 0
+            </button><button class="text-[12px] font-medium text-text-muted hover:text-primary px-2 py-1 transition" onclick="resetValidRegion()" type="button">
+              기본값
+            </button><button class="text-[12px] font-semibold text-white bg-primary hover:bg-neutral-800 px-3 py-1 rounded transition" id="btnApply" onclick="applyRegion()" type="button">
+              영역 적용
+            </button></div></div><!-- Interactive Frame Canvas Viewport Mock --><div class="relative w-full aspect-video bg-neutral-950 rounded overflow-hidden flex items-center justify-center border border-border-hairline group"><div class="absolute inset-0 bg-cover bg-center opacity-70" data-alt="Dark cinema test pattern frame showing architectural grid structures, color calibration blocks and sharp lines" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBhPwgTyZB10eLj_EySlmEj4mvlTOCpidDTFQatedsfV7NTK4faJxRZGAF-tnQvNXOGBAtQS685dDJ6rsPyXRTaOumhx9YC88OB4UsrS4SCMUHTljn6jqpjtYBQKoF-wXA1uAxlrgaOiMaC5LoYUHhIh9NsivrePTL7OOugCMZuX8_zebbTPa77E6PBaAtM7hpFHxZsAuTg0ifT1GsKcyL_GsqRZtlpe924jaWSyD8x')"></div><div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none"></div><!-- The Selection Bounding Box Overlay --><div class="absolute bg-white/10 transition-all duration-200" id="selectionBox" style="left: 47.9167%; top: 44.4444%; width: 25%; height: 44.4444%; display: block;"><div class="w-full h-full border border-white relative shadow-[0_0_0_1px_rgba(0,0,0,0.6)]"><span class="absolute -top-6 left-0 bg-neutral-900/90 text-white px-1.5 py-0.5 rounded text-[10px] tracking-tight font-mono border border-neutral-700">X: 920 Y: 480 (480×480)</span><div class="w-1.5 h-1.5 bg-white absolute -top-1 -left-1"></div><div class="w-1.5 h-1.5 bg-white absolute -top-1 -right-1"></div><div class="w-1.5 h-1.5 bg-white absolute -bottom-1 -left-1"></div><div class="w-1.5 h-1.5 bg-white absolute -bottom-1 -right-1"></div></div></div><div class="absolute bottom-2 left-3 text-white/80 text-[11px] font-mono flex items-center gap-1.5"><span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            Frame 00:04:12 / Rec.709 Standard Master
+          </div></div></div></div><!-- Right Column: Documented Error Catalog --><div class="lg:col-span-5 flex flex-col gap-3"><div class="flex items-center justify-between pb-1"><h3 class="text-[15px] font-semibold text-primary">상태 예외 처리 카탈로그</h3><span class="text-[12px] text-text-muted">4개 주요 예외 패턴</span></div><!-- State Card 1: Unsupported File Type --><div class="bg-surface rounded-md p-4 border border-border-hairline flex flex-col gap-2"><div class="flex items-center justify-between"><div class="flex items-center gap-2 text-primary font-semibold text-[13px]"><svg class="w-4 h-4 text-text-muted" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" x2="19.07" y1="4.93" y2="19.07"></line></svg>
+            지원하지 않는 형식 (FORMAT_UNSUPPORTED)
+          </div><span class="text-[11px] bg-surface-low border border-border-subtle px-1.5 py-0.5 rounded text-text-muted font-medium">MOD-001</span></div><div class="p-2.5 bg-surface-low border border-border-subtle rounded text-primary text-[13px] font-medium">
+          “MP4 또는 WebM 파일을 선택하세요.”
+        </div><p class="text-[12px] text-text-muted leading-relaxed">
+          AVI, MKV, ProRes QuickTime 등 브라우저 네이티브 HTML5 비디오 디코더가 지원하지 않는 컨테이너 입력 시 즉각 차단 및 안내합니다.
+        </p><div class="pt-1 flex justify-end"><button class="text-[12px] font-semibold text-link-action hover:underline flex items-center gap-0.5" type="button">
+            지원 코덱 안내
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></button></div></div><!-- State Card 2: Duration Exceeded --><div class="bg-surface rounded-md p-4 border border-border-hairline flex flex-col gap-2"><div class="flex items-center justify-between"><div class="flex items-center gap-2 text-primary font-semibold text-[13px]"><svg class="w-4 h-4 text-text-muted" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            재생 길이 초과 (DURATION_EXCEEDED)
+          </div><span class="text-[11px] bg-surface-low border border-border-subtle px-1.5 py-0.5 rounded text-text-muted font-medium">MOD-001</span></div><div class="p-2.5 bg-surface-low border border-border-subtle rounded text-primary text-[13px] font-medium">
+          “30초 이하의 영상을 선택하세요.”
+        </div><div class="flex items-center justify-between text-[12px] text-text-muted"><span>감지된 길이: <strong class="text-primary font-semibold">00:48.12</strong> (최대 30초)</span><span class="text-alert-red font-medium">+18.12s 초과</span></div><p class="text-[12px] text-text-muted leading-relaxed">
+          프레임 단위 디코딩 과부하 방지 및 안정적인 1:1 비교를 위해 30초 클립으로 제한됩니다.
+        </p></div><!-- State Card 3: Decoder Fault --><div class="bg-surface rounded-md p-4 border border-border-hairline flex flex-col gap-2"><div class="flex items-center justify-between"><div class="flex items-center gap-2 text-primary font-semibold text-[13px]"><svg class="w-4 h-4 text-text-muted" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v1"></path><path d="M10 10l-4 4m0-4l4 4"></path><path d="M23 7l-7 5 7 5V7z"></path></svg>
+            디코더 파싱 실패 (DECODER_FAULT)
+          </div><span class="text-[11px] bg-surface-low border border-border-subtle px-1.5 py-0.5 rounded text-text-muted font-medium">MOD-001</span></div><div class="p-2.5 bg-surface-low border border-border-subtle rounded text-primary text-[13px] font-medium">
+          “이 브라우저에서 영상을 열 수 없습니다. 다른 영상을 선택하거나 샘플을 사용해 보세요.”
+        </div><p class="text-[12px] text-text-muted leading-relaxed">
+          H.265/HEVC 프로필 비호환 또는 손상된 인덱스 블록 등으로 인해 비디오 트랙 렌더링에 실패했을 때 복구 대안을 제공합니다.
+        </p><div class="pt-1"><button class="w-full text-[13px] font-semibold bg-surface border border-border-hairline hover:bg-surface-low text-primary py-1.5 rounded text-center transition" type="button">
+            샘플 영상 로드 (1080p WebM)
+          </button></div></div><!-- State Card 4: Crop Boundary / Zero Area Warning --><div class="bg-surface rounded-md p-4 border border-border-hairline flex flex-col gap-2"><div class="flex items-center justify-between"><div class="flex items-center gap-2 text-primary font-semibold text-[13px]"><svg class="w-4 h-4 text-text-muted" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" x2="12" y1="9" y2="13"></line><line x1="12" x2="12.01" y1="17" y2="17"></line></svg>
+            경계 이탈 / 면적 0 경고 (CROP_INVALID)
+          </div><span class="text-[11px] bg-surface-low border border-border-subtle px-1.5 py-0.5 rounded text-text-muted font-medium">MOD-002</span></div><div class="p-2.5 bg-surface-low border border-border-subtle rounded text-primary text-[13px] font-medium">
+          “원본 프레임 안에서 너비와 높이가 1px 이상인 영역을 선택하세요.”
+        </div><p class="text-[12px] text-text-muted leading-relaxed">
+          선택 사각형이 원본 프레임(1920×1080) 바깥으로 넘어가거나, 사용자가 클릭만 하여 0×0px 영역이 지정된 경우 추출 연산을 보류합니다.
+        </p></div></div></div>
+<!-- Recovery Recommendations & Diagnostics Footer Card -->
+<div class="w-full bg-surface border border-border-hairline rounded-md p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded border border-border-subtle bg-surface-low flex items-center justify-center text-primary shrink-0"><svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg></div><div><div class="text-[14px] font-semibold text-primary">자가 진단 및 권장 환경 규격</div><div class="text-[12px] text-text-muted">Chrome 108+, Edge 108+, Safari 16.4+ (Hardware WebCodecs 가속 활성화 필요)</div></div></div><div class="flex items-center gap-2 w-full md:w-auto"><button class="w-full md:w-auto text-[13px] font-semibold text-primary bg-surface border border-border-hairline hover:bg-surface-low px-3.5 py-1.5 rounded transition" type="button">
+        오류 로그 내보내기 (.json)
+      </button><button class="w-full md:w-auto text-[13px] font-semibold text-white bg-primary hover:bg-neutral-800 px-3.5 py-1.5 rounded transition" type="button">
+        초기 상태 리셋
+      </button></div></div>
+</div><script>
+  function validateRegion() {
+    const x = parseInt(document.getElementById('inputX').value) || 0;
+    const y = parseInt(document.getElementById('inputY').value) || 0;
+    const w = parseInt(document.getElementById('inputW').value) || 0;
+    const h = parseInt(document.getElementById('inputH').value) || 0;
+
+    const frameW = 1920;
+    const frameH = 1080;
+
+    const feedbackBox = document.getElementById('validationFeedback');
+    const feedbackText = document.getElementById('validationText');
+    const feedbackIcon = document.getElementById('validationIcon');
+    const btnApply = document.getElementById('btnApply');
+    const box = document.getElementById('selectionBox');
+
+    // Rule: Width and Height >= 1px
+    if (w < 1 || h < 1) {
+      feedbackBox.className = 'flex items-center gap-2 text-[12px] text-alert-red';
+      feedbackIcon.outerHTML = '<svg id="validationIcon" class="w-4 h-4 text-alert-red shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>';
+      feedbackText.textContent = '원본 프레임 안에서 너비와 높이가 1px 이상인 영역을 선택하세요.';
+      btnApply.disabled = true;
+      btnApply.classList.add('opacity-40', 'cursor-not-allowed');
+      box.style.display = 'none';
+      return false;
+    }
+
+    // Rule: Inside boundaries
+    if (x < 0 || y < 0 || (x + w) > frameW || (y + h) > frameH) {
+      feedbackBox.className = 'flex items-center gap-2 text-[12px] text-alert-red';
+      feedbackIcon.outerHTML = '<svg id="validationIcon" class="w-4 h-4 text-alert-red shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>';
+      feedbackText.textContent = `경계 이탈: 선택 영역이 원본(1920×1080)을 벗어납니다. (현재 끝점: X=${x+w}, Y=${y+h})`;
+      btnApply.disabled = true;
+      btnApply.classList.add('opacity-40', 'cursor-not-allowed');
+      box.style.display = 'none';
+      return false;
+    }
+
+    // Valid
+    box.style.display = 'block';
+    const pctLeft = (x / frameW) * 100;
+    const pctTop = (y / frameH) * 100;
+    const pctW = (w / frameW) * 100;
+    const pctH = (h / frameH) * 100;
+
+    box.style.left = pctLeft + '%';
+    box.style.top = pctTop + '%';
+    box.style.width = pctW + '%';
+    box.style.height = pctH + '%';
+
+    const label = box.querySelector('span');
+    if (label) {
+      label.textContent = `X: ${x} Y: ${y} (${w}×${h})`;
+    }
+
+    feedbackBox.className = 'flex items-center gap-2 text-[12px] text-primary';
+    feedbackIcon.outerHTML = '<svg id="validationIcon" class="w-4 h-4 text-emerald-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>';
+    feedbackText.textContent = `경계 내 유효한 사각형입니다 (X+W: ${x+w}px ≤ 1920, Y+H: ${y+h}px ≤ 1080)`;
+    btnApply.disabled = false;
+    btnApply.classList.remove('opacity-40', 'cursor-not-allowed');
+    return true;
+  }
+
+  function applyRegion() {
+    if (validateRegion()) {
+      const feedbackText = document.getElementById('validationText');
+      feedbackText.textContent = '크롭 영역이 렌더 파이프라인에 성공적으로 적용되었습니다.';
+      setTimeout(() => {
+        validateRegion();
+      }, 2500);
+    }
+  }
+
+  function setOutOfBounds() {
+    document.getElementById('inputX').value = 1600;
+    document.getElementById('inputY').value = 800;
+    document.getElementById('inputW').value = 600;
+    document.getElementById('inputH').value = 400;
+    validateRegion();
+  }
+
+  function setZeroArea() {
+    document.getElementById('inputX').value = 400;
+    document.getElementById('inputY').value = 200;
+    document.getElementById('inputW').value = 0;
+    document.getElementById('inputH').value = 120;
+    validateRegion();
+  }
+
+  function resetValidRegion() {
+    document.getElementById('inputX').value = 920;
+    document.getElementById('inputY').value = 480;
+    document.getElementById('inputW').value = 480;
+    document.getElementById('inputH').value = 480;
+    validateRegion();
+  }
+
+  validateRegion();
+</script></main><footer class="w-full border-t border-border-subtle bg-surface py-6 text-center"><div class="max-w-[1040px] mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3"><div class="text-[12px] text-text-muted">FrameCheck Post-Production Analysis • Utilitarian Precision Engine</div><div class="text-[12px] text-text-secondary">© 2024 FrameCheck. High-fidelity frame inspection.</div></div></footer>
+
+</body></html>

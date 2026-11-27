@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "primary": "#000000",
+          "surface-container-lowest": "#ffffff",
+          "text-muted": "#737373",
+          "border-subtle": "#EFEFEF",
+          "border-hairline": "#DBDBDB",
+          "surface": "#FFFFFF",
+          "surface-container": "#F5F5F5",
+          "surface-container-low": "#FAFAFA",
+          "background": "#FFFFFF",
+          "on-surface": "#111111",
+          "ink": "#000000"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "md": "0.375rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-xl": "2rem",
+          "space-sm": "0.5rem",
+          "margin": "1.5rem",
+          "gutter": "1.5rem",
+          "space-xs": "0.25rem",
+          "space-lg": "1.5rem",
+          "space-md": "1rem",
+          "space-section": "3rem"
+        },
+        "fontFamily": {
+          "sans": [
+            "-apple-system",
+            "BlinkMacSystemFont",
+            "'Apple SD Gothic Neo'",
+            "'Segoe UI'",
+            "Roboto",
+            "Helvetica",
+            "Arial",
+            "sans-serif"
+          ]
+        }
+      }
+    }
+  }</script><style id="global-font-family">html, body, *, button, input, select, textarea, p, span, h1, h2, h3, h4, h5, h6 { font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important; }</style></head><body class="bg-white font-sans text-on-surface min-h-screen selection:bg-neutral-100"><header class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-[#DBDBDB]"><div class="h-14 max-w-[1040px] mx-auto px-margin flex items-center justify-between"><div class="flex items-center gap-6"><div class="flex items-center gap-2 cursor-pointer"><svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="18" rx="3" width="18" x="3" y="3"></rect><path d="M3 9h18M9 21V9"></path></svg><span class="text-[17px] font-semibold tracking-tight text-black">FrameCheck</span></div><div class="hidden sm:flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-[#EFEFEF] bg-[#FAFAFA]"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span><span class="text-[12px] font-medium text-[#737373]">Live Engine</span></div></div><div class="flex items-center gap-6"><nav class="hidden md:flex items-center gap-1"><a aria-current="page" class="text-[13px] font-semibold text-black bg-[#EFEFEF] px-3 py-1.5 rounded-md transition-colors" href="#">Inspector</a><a class="text-[13px] font-medium text-[#737373] hover:text-black px-3 py-1.5 rounded-md hover:bg-[#FAFAFA] transition-colors" href="#">Batch</a><a class="text-[13px] font-medium text-[#737373] hover:text-black px-3 py-1.5 rounded-md hover:bg-[#FAFAFA] transition-colors" href="#">Docs</a></nav><div class="flex items-center gap-3"><button aria-label="Notifications" class="p-1 text-black hover:text-neutral-600 transition-colors" type="button"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M12 21a2 2 0 0 1-2-2h4a2 2 0 0 1-2 2zm6-6V11a6 6 0 1 0-12 0v4L4 17h16l-2-2z"></path></svg></button><div class="w-7 h-7 rounded-full bg-black text-white flex items-center justify-center text-[12px] font-medium border border-[#DBDBDB]"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div></div></div></div></header><main class="w-full pt-20 bg-white max-w-[1040px] mx-auto px-margin min-h-[calc(100vh-3.5rem)]"><div class="flex flex-col w-full">
+<!-- START: Main Workspace Grid -->
+<div class="space-y-6 pb-12">
+<!-- 1. Hero Start Section -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+<!-- Left Editorial Column -->
+<div class="lg:col-span-6 flex flex-col justify-center space-y-3.5">
+<div class="inline-flex items-center gap-1.5 self-start px-2 py-0.5 rounded border border-[#EFEFEF] bg-[#FAFAFA] text-[#737373] text-[11px] font-medium tracking-wide uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-black"></span>
+<span>Precision Frame Inspector</span>
+</div>
+<h1 class="text-[32px] font-bold text-black tracking-tight leading-[1.2]">
+          압축 전후 프레임 비교
+        </h1>
+<p class="text-[14px] text-[#737373] leading-relaxed max-w-lg">
+          해상도와 JPEG 품질을 바꿔 영상의 디테일을 확인하세요. 브라우저 내에서 가속 디코딩되어 원본 데이터가 외부 서버로 전송되지 않습니다.
+        </p>
+<!-- CTAs -->
+<div class="pt-1 flex flex-wrap items-center gap-2.5">
+<button class="h-9 px-4 bg-black hover:bg-neutral-800 text-white text-[13px] font-medium rounded-lg flex items-center gap-2 transition-all active:scale-[0.98]" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"></path></svg>
+<span>내 영상 열기</span>
+</button>
+<button class="h-9 px-4 bg-white hover:bg-neutral-50 text-black border border-[#DBDBDB] text-[13px] font-medium rounded-lg flex items-center gap-2 transition-all active:scale-[0.98]" type="button">
+<svg class="w-4 h-4 text-neutral-700" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+<span>샘플로 시작</span>
+</button>
+</div>
+<!-- Privacy and Spec Notice -->
+<div class="pt-2 flex flex-col sm:flex-row sm:items-center gap-y-1 gap-x-3 text-[12px] text-[#737373]">
+<span class="flex items-center gap-1.5">
+<svg class="w-3.5 h-3.5 text-neutral-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="18" rx="2" width="20" x="2" y="3"></rect><line x1="7" x2="7" y1="3" y2="21"></line><line x1="17" x2="17" y1="3" y2="21"></line></svg>
+            MP4 • WebM / 최대 30초 • 50MB
+          </span>
+<span class="hidden sm:inline text-neutral-300">•</span>
+<span class="flex items-center gap-1.5 text-black font-medium">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            브라우저 로컬 디코딩
+          </span>
+</div>
+</div>
+<!-- Right Preview Card -->
+<div class="lg:col-span-6">
+<div class="bg-white rounded-xl p-3 border border-[#DBDBDB] shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+<div class="flex items-center justify-between pb-2.5 px-1 border-b border-[#EFEFEF]">
+<span class="text-[12px] text-[#737373] flex items-center gap-1.5 font-mono">
+<svg class="w-3.5 h-3.5 text-neutral-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              00:08.24 / 00:24.00 (4K 3840×2160)
+            </span>
+<span class="text-[11px] uppercase tracking-wider text-black font-semibold">Active Session</span>
+</div>
+<!-- Video Stage -->
+<div class="relative bg-black rounded-lg overflow-hidden aspect-[16/9] flex items-center justify-center group cursor-crosshair mt-2.5">
+<img class="w-full h-full object-cover select-none" data-alt="Detailed wide cinematic video frame of a master artisan woodcarver with greying beard and leather apron inside his rustic workshop, holding a chisel to a carved wooden figure with flying fine wood shavings in natural morning light entering through tall mullioned window." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6jv25DkjOUkFm9d4oirQzy44eM_gdoWR5R9ShWfjP-ymiP3msp-r86Q25RkG4XGA9993hfSPuTKOQS3pnQGof2sXtaji-sGujhrYf-oiNJwY91PecnRf_jYusW8BDUUqX3gMux5YnvOatt06gXQmJqRq9MRJrQvgJgZ1ud_dZc9j3I28idhEirk3AC6j4mk5fyogaav2GOPg_jtXR7ABDMXNitgME0r32ueiW1OfH"/>
+<!-- Highlight Box Target -->
+<div class="absolute inset-0 pointer-events-none flex items-center justify-center">
+<div class="w-36 h-36 border border-white shadow-[0_0_0_1px_rgba(0,0,0,0.5)] relative">
+<span class="absolute -top-4 left-0 bg-black text-white text-[9px] px-1.5 py-0.5 tracking-wider font-mono font-medium leading-none uppercase">CROP TARGET</span>
+</div>
+</div>
+<!-- Bottom Helper Bar -->
+<div class="absolute bottom-2 left-2 right-2 bg-black/75 backdrop-blur-md px-3 py-1.5 rounded-md flex items-center justify-between text-white border border-white/10">
+<span class="text-[11px] flex items-center gap-1.5 text-neutral-200">
+<svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 2v14a2 2 0 0 0 2 2h14"></path><path d="M18 22V8a2 2 0 0 0-2-2H2"></path></svg>
+                프레임에서 비교할 영역을 드래그하세요.
+              </span>
+<span class="text-[11px] text-neutral-400 font-mono">1:1 Pixels</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Timeline & Video Controls Panel -->
+<section class="bg-white rounded-xl p-4 border border-[#DBDBDB] space-y-3 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div class="flex items-center gap-2.5">
+<svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect height="14" rx="2" width="14" x="1" y="5"></rect></svg>
+<span class="text-[13px] text-black font-semibold">sample_workshop_artisan_4k.mp4</span>
+<span class="text-[11px] text-[#737373] bg-[#F5F5F5] border border-[#EFEFEF] px-1.5 py-0.5 rounded font-mono">3840 × 2160 @ 24fps</span>
+</div>
+<div class="text-[12px] text-[#737373] font-mono tracking-tight">
+<span class="text-black font-semibold">00:08.24</span> / 00:24.00 (Frame #198)
+        </div>
+</div>
+<!-- Scrub Track -->
+<div class="relative w-full py-2 cursor-pointer group">
+<div class="h-1.5 w-full bg-[#EFEFEF] rounded-full overflow-hidden">
+<div class="h-full bg-black rounded-full" style="width: 34.33%;"></div>
+</div>
+<!-- Playhead Indicator -->
+<div class="absolute top-1/2 -translate-y-1/2 left-[34.33%] w-3.5 h-3.5 bg-black border-2 border-white rounded-full shadow-md cursor-grab active:cursor-grabbing"></div>
+</div>
+<!-- Playback Actions Toolbar -->
+<div class="flex items-center justify-between pt-2 border-t border-[#EFEFEF]">
+<div class="flex items-center gap-1.5">
+<button class="h-7 px-2.5 text-[#737373] hover:text-black hover:bg-[#FAFAFA] border border-[#EFEFEF] rounded-md text-[12px] font-medium flex items-center gap-1 transition-colors" title="이전 프레임" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+<span>1프레임</span>
+</button>
+<button class="h-7 px-3 bg-black text-white hover:bg-neutral-800 rounded-md text-[12px] font-medium flex items-center gap-1.5 transition-colors" type="button">
+<svg class="w-3.5 h-3.5 fill-white" viewbox="0 0 24 24"><rect height="16" rx="1" width="4" x="6" y="4"></rect><rect height="16" rx="1" width="4" x="14" y="4"></rect></svg>
+<span>일시정지</span>
+</button>
+<button class="h-7 px-2.5 text-[#737373] hover:text-black hover:bg-[#FAFAFA] border border-[#EFEFEF] rounded-md text-[12px] font-medium flex items-center gap-1 transition-colors" title="다음 프레임" type="button">
+<span>1프레임</span>
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</button>
+</div>
+<div class="flex items-center gap-3 text-[12px] text-[#737373]">
+<span class="flex items-center gap-1.5 font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            Hardware Decoded
+          </span>
+<span class="text-neutral-300">|</span>
+<span class="font-mono">Zoom: 100%</span>
+</div>
+</div>
+</section>
+<!-- 3. Side-by-Side Dual Frame Comparison Cards -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Baseline: Original Frame Card -->
+<div class="bg-white rounded-xl p-4 border border-[#DBDBDB] shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col justify-between space-y-4">
+<div>
+<div class="flex items-start justify-between border-b border-[#EFEFEF] pb-2.5">
+<div>
+<h2 class="text-[14px] text-black font-semibold tracking-tight">원본 프레임 (Original)</h2>
+<p class="text-[12px] text-[#737373] font-mono pt-0.5">3840 × 2160 px • 무압축 PNG 원본</p>
+</div>
+<span class="px-2 py-0.5 rounded border border-[#DBDBDB] bg-[#FAFAFA] text-black text-[11px] font-medium uppercase tracking-wider">Reference</span>
+</div>
+<!-- Master Viewport -->
+<div class="mt-3 relative bg-black rounded-lg aspect-[16/9] overflow-hidden select-none">
+<img class="w-full h-full object-cover" data-alt="Original high-definition 4K capture showing an aged craftsman carving wood in a sunlit Italian workshop, razor sharp details on wrinkles of his hands, wood grain, and sawdust particles." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoJSFrLQnnB65qI-bheFIghdAbLtastUd26ZwKNyE-7fgKFdp6pkxEFMeCxU9IxbSmyQ7ejV6DPI3P7KUeLtC3VzuxmhvuzMZU0frPoeETdobblLP8zYKPTGtWa1aARXE_ktDWJtGSF1UyUuRz2T7lSCuFqYDSks0rEUTv1ZKUAHOKYUw_UBzpSxKb6Tnga6plK-9jNm2kDqpwbsKn9i60ZE9jpkQZugyzBcpWpQbz"/>
+<!-- White Minimal Bounding Box Overlay -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="w-40 h-40 border border-white shadow-[0_0_0_1px_rgba(0,0,0,0.5)] relative bg-white/5">
+<div class="absolute top-1 left-1 bg-black/90 text-white text-[9px] font-mono px-1 py-0.5 uppercase tracking-wide">ROI #1</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Zoomed Region Detail -->
+<div class="bg-[#FAFAFA] rounded-lg p-3 border border-[#EFEFEF]">
+<div class="flex items-center justify-between pb-2">
+<span class="text-[12px] text-black font-medium flex items-center gap-1.5">
+<svg class="w-3.5 h-3.5 text-neutral-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg>
+              선택 영역 정밀 확대 (100% 1:1 Pixel Match)
+            </span>
+<span class="text-[11px] text-[#737373] font-mono">480 × 480 px</span>
+</div>
+<div class="relative bg-black rounded-md aspect-square max-h-52 mx-auto overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Extreme macro close-up of chisel cutting into pine wood block, showing ultra crisp wood grain fiber texture, chisel metal reflection, and fine dust speckles with zero compression artifacts." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBI-DQzmEZUlJGaKFAU6wUGZx7nShEN1ovQFoDoxvOEZuNaCP8ZCwqoYNgdrf1TTAhijE25GiKv2NJEjyQgvpVezL6vJkAWD1EXN3JjvV-oLJ41Bxv7Yp5i3A6e8hKkpNnjv-oOU9BOQaZusJuG9S8LlnlKvHUvlJE_UuZ3Hww4KD0ZqQQ4RkVv03dL9IpuV7Z0VU-La6S0m2h7PRTWIguFET53mclbT1tN2PIZaz9"/>
+<div class="absolute bottom-1.5 right-1.5 bg-black/80 backdrop-blur-sm border border-white/10 px-2 py-0.5 rounded text-[10px] font-mono text-white">
+              1:1 Uncompressed
+            </div>
+</div>
+</div>
+</div>
+<!-- Derived: Compressed Frame Card -->
+<div class="bg-white rounded-xl p-4 border border-[#DBDBDB] shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col justify-between space-y-4">
+<div>
+<div class="flex items-start justify-between border-b border-[#EFEFEF] pb-2.5">
+<div>
+<h2 class="text-[14px] text-black font-semibold tracking-tight">압축 변환본 (Preview)</h2>
+<p class="text-[12px] text-[#737373] font-mono pt-0.5">1920 × 1080 px (50% 다운스케일) • JPEG Q75</p>
+</div>
+<span class="px-2 py-0.5 rounded border border-[#DBDBDB] bg-[#FAFAFA] text-black text-[11px] font-medium uppercase tracking-wider">Processed</span>
+</div>
+<!-- Compressed Viewport (exact spatial alignment) -->
+<div class="mt-3 relative bg-black rounded-lg aspect-[16/9] overflow-hidden select-none">
+<img class="w-full h-full object-cover filter contrast-[0.98]" data-alt="Identical camera shot of the woodcarver processed at half resolution and 75 percent quality compression, showing subtle block boundaries and softened edge contrast around artisan fingers." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgIrgPRzARWxQ88Fj1Fi8-dxevnQHP5NKr504Eb3W3bGd_wdf8eIqisXDIVQA4kTD5ZdiGEwdS5-yrRu8KR_A55hw0HN2lnm55OpXe4jcTKsn39nryKRpnRpNkneNPPgrmrraZYk3H3vMN1RPDwAOXq_-imeQNHqlfF0kwitJluRFBgzDPRuhoT1nlKUUpFaVfvENx67yePw5r3yz3kNOKOWUNWirajUK_aONu0MG0"/>
+<!-- Matching White Minimal Bounding Box Overlay -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="w-40 h-40 border border-white shadow-[0_0_0_1px_rgba(0,0,0,0.5)] relative bg-white/5">
+<div class="absolute top-1 left-1 bg-black/90 text-white text-[9px] font-mono px-1 py-0.5 uppercase tracking-wide">ROI #1</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Zoomed Region Detail (Compressed) -->
+<div class="bg-[#FAFAFA] rounded-lg p-3 border border-[#EFEFEF]">
+<div class="flex items-center justify-between pb-2">
+<span class="text-[12px] text-black font-medium flex items-center gap-1.5">
+<svg class="w-3.5 h-3.5 text-neutral-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"></path></svg>
+              압축 손실 관찰 (Upscaled Inspection)
+            </span>
+<span class="text-[11px] text-[#737373] font-mono">240 × 240 → 480 px</span>
+</div>
+<div class="relative bg-black rounded-md aspect-square max-h-52 mx-auto overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover filter blur-[0.4px]" data-alt="Extreme macro close-up of chisel tip cutting wood with visible standard JPEG 8x8 block discrete cosine transform DCT artifacts, ringing along chisel metal silhouette, and smoothed wood grains." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmm8TOIuK4sw3Xi35fblBEOhBo2hD31Ru1gvFLyxWiTZ5l23zB598NWj1Vrx7wqvSqXDkjnGBIxnvxFMDN3gd8j9MYKJ_HfC3Xu1nxujBwzm-QY9RYsoU2QGW0EIo2GAor5Qqu8hK8aO_YxYfQjkA_Ok1t3b_mO4SYlKvxt3CbZBEkAbMaqQOzFWtqZFtnrlGFeM3w_hYAZW0h0f2jIR9n5TPHmoCIUQhRa9lWZxCr"/>
+<div class="absolute bottom-1.5 right-1.5 bg-black/80 backdrop-blur-sm border border-white/10 px-2 py-0.5 rounded text-[10px] font-mono text-white">
+              ~42.8 KB (−88%)
+            </div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Compression Controls & Export Panel -->
+<section class="bg-white rounded-xl p-5 border border-[#DBDBDB] space-y-5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-[#EFEFEF]">
+<div>
+<h3 class="text-[15px] text-black font-semibold tracking-tight">프레임 압축 설정 및 내보내기</h3>
+<p class="text-[12px] text-[#737373] pt-0.5">변경 즉시 우측 미리보기 프레임 및 크롭 분석 영역이 재렌더링됩니다.</p>
+</div>
+<div class="mt-2 sm:mt-0">
+<span class="text-[12px] text-black flex items-center gap-1.5 font-medium">
+<svg class="w-3.5 h-3.5 fill-black" viewbox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            실시간 렌더러 가동 중
+          </span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-1">
+<!-- Slider 1: Resolution Scale -->
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<label class="text-[13px] text-black font-medium" for="scale-slider">
+              해상도 스케일 (Resolution Scale)
+            </label>
+<span class="text-[12px] font-mono text-black font-semibold">50% (1920 × 1080)</span>
+</div>
+<input class="w-full h-1.5 bg-[#EFEFEF] rounded-lg appearance-none cursor-pointer accent-black" id="scale-slider" max="100" min="25" step="25" type="range" value="50"/>
+<div class="flex justify-between text-[11px] text-[#737373] font-mono pt-1">
+<span>25% (Quarter)</span>
+<span class="text-black font-semibold">50% (Half)</span>
+<span>75%</span>
+<span>100% (Original)</span>
+</div>
+</div>
+<!-- Slider 2: JPEG Quality -->
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<label class="text-[13px] text-black font-medium" for="quality-slider">
+              JPEG 품질 (JPEG Quality)
+            </label>
+<span class="text-[12px] font-mono text-black font-semibold">Q75 (권장 균형값)</span>
+</div>
+<input class="w-full h-1.5 bg-[#EFEFEF] rounded-lg appearance-none cursor-pointer accent-black" id="quality-slider" max="100" min="10" step="5" type="range" value="75"/>
+<div class="flex justify-between text-[11px] text-[#737373] font-mono pt-1">
+<span>Q10 (고압축)</span>
+<span>Q50</span>
+<span class="text-black font-semibold">Q75 (권장)</span>
+<span>Q100 (무손실근접)</span>
+</div>
+</div>
+</div>
+<!-- Export Action Row -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#EFEFEF]">
+<div class="flex items-center gap-2 text-[#737373] text-[12px]">
+<svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+<span>두 프레임의 비교 결과가 최신 상태로 준비되었습니다.</span>
+</div>
+<div class="flex items-center gap-2 w-full sm:w-auto">
+<button class="w-full sm:w-auto h-9 px-4 bg-white hover:bg-neutral-50 text-black border border-[#DBDBDB] text-[13px] font-medium rounded-lg flex items-center justify-center gap-1.5 transition-colors active:scale-[0.98]" type="button">
+<svg class="w-3.5 h-3.5 text-neutral-600" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>
+<span>설정 초기화</span>
+</button>
+<button class="w-full sm:w-auto h-9 px-5 bg-black hover:bg-neutral-800 text-white text-[13px] font-medium rounded-lg flex items-center justify-center gap-1.5 transition-colors active:scale-[0.98]" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+<span>비교 PNG 저장</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</div></main><footer class="w-full bg-white border-t border-[#DBDBDB] py-6 mt-12"><div class="max-w-[1040px] mx-auto px-margin flex flex-col sm:flex-row items-center justify-between gap-3"><div class="text-[12px] text-[#737373]">FrameCheck Post-Production Analysis • Utilitarian Precision Engine</div><div class="text-[12px] text-[#737373]">© 2024 FrameCheck. High-fidelity frame inspection.</div></div></footer>
+</body></html>
